@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#outer{
+
+  width:500px;
+  height:500px;
+  background-color:red;
+}
+#middle{
+  width:50%;
+  height:50%;
+  position:relative;
+  top:25%;
+  left: 25%;
+  background-color:green;
+}
+#inner{
+  width:50%;
+  height:50%;
+  position:relative;
+  top:25%;
+  left: 25%;
+  background-color:blue;
+}
+</style>
+<script>
+window.onload = function(){
+  document.getElementById("outer").addEventListener("click",outerDivClick, true);
+    document.getElementById("middle").addEventListener("click",middleDivClick, true);
+      document.getElementById("inner").addEventListener("click",innerDivClick, true);
+        document.getElementById("clearButton").addEventListener("click",clearList);
+document.getElementById("imie").focus();
+        document.getElementById("imie").addEventListener("blur",function (){
+          if(this.value.length<5){
+            document.querySelector("#info").innerHTML = "name must be longer then 5 char";
+            document.getElementById("imie").style.color = "red";
+            this.focus();
+          }
+        });
+        document.querySelector("#imie").addEventListener("keydown",function(){
+var x = document.querySelector("#info1").innerText ;
+x =+ window.event.keyCode;
+        })
+      }
+      function outerDivClick(){
+        appendText("outer div Clicked");
+      }
+
+      function middleDivClick(){
+        appendText("middle div Clicked");
+      }
+
+      function innerDivClick(){
+        appendText("inner div Clicked");
+      }
+
+      function appendText(s){
+        var li = document.createElement("li");
+        li.innerText = s;
+        document.getElementById("eventOrder").appendChild(li);
+      }
+      function clearList(){
+        var ol = document.createElement("ol");
+        ol.id = "eventOrder";
+        document.getElementById("bod").replaceChild(ol,document.getElementById("eventOrder"));
+      }
+
+</script>
+
+</head>
+<body id = "bod">
+  <div id = "outer">
+    <div id = "middle">
+      <div id = "inner">
+        </div>
+      </div>
+    </div>
+    <ol id="eventOrder"></ol>
+    <button type="button" id= "clearButton">Clear</button>
+
+<input type="text" id = "imie"></input>
+<p id="info"></p>
+<p id="info1"></p>
+
+
+</body>
+
+
+
+
+</html>

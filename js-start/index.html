@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type ="text/javascript" src="odliczanie.js"></script>
+<script type ="text/javascript" src="dataIGodzinaZSystemu.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+function schowaj(){
+  $("#slider").fadeOut(500);//uzywa scryptu jquery
+}
+var timer1 = 0;
+var timer2 = 0;
+function ustawSlajd(nrSlajdu){
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+  numer = nrSlajdu-1;
+  schowaj();
+  setTimeout("zmienSlajd()",500);
+}
+function sprawdz(){
+  var x = document.getElementById("liczba").value
+  if (x<0){
+    document.getElementById("wynik").innerHTML="Liczba ujemna";
+
+  }
+  else if(x>0){
+        document.getElementById("wynik").innerHTML="Liczba dodatnia";
+    }
+  else if (x=="0"){
+          document.getElementById("wynik").innerHTML="Liczba 0";
+  }
+  else{
+        document.getElementById("wynik").innerHTML="To nie liczba";
+  }
+}
+function pokaz(){
+  var x =document.getElementById("pierwsza").value;
+  var y =document.getElementById("druga").value;
+  var napis = "";
+  if(x>y){
+    document.getElementById("ciag").innerHTML = "Czego nie rozumiesz Pierwsza Liczba ma byc MNIEJSZA";
+  }
+  else if (x <= y){
+
+    for (i=x;i<=y;i++)
+    {
+      napis = napis + i + " ";
+    }
+    document.getElementById("ciag").innerHTML =napis;
+  }
+  else
+  {
+    document.getElementById("ciag").innerHTML ="To maja byc Liczby";
+  }
+}
+var numer = Math.floor(Math.random()*5)+1;//losuje numer zdjecia
+//Math.floor - zaokragla wynik do liczby calkowitej
+// Math.random()*5 zapis liczby pseudo losowej od 0-4 bo taka jest numeracja i dodajemy jeden
+function zmienSlajd(){
+  numer++;//numer jest incrementowany
+  if(numer>5){numer =1}//jezeli numer jest wyzszy niz 5 to automatycznie staje sie 1
+  var plik = "<img src=\"slajdy/slajd"+numer+".jpg\"/>";//zapisujemy zdjecie w zmiennej
+  document.getElementById("slider").innerHTML = plik;//a zmienna przypisujemy do diva slider
+  $("#slider").fadeIn(500);
+    timer2=setTimeout("schowaj()",4500);
+  timer1=setTimeout("zmienSlajd()",5000);//funkcja odpala sie co 2 sekundy
+
+}
+</script>
+</head >
+
+<body onload = "odliczanie();aktualnaDataIGodzinaPobieranaZSystemu();zmienSlajd()">
+
+<div id ="zegar"> </div>
+<div id = "zegar1"></div>
+<div id = "koniecEgazminu"></div>
+
+<h1>Podaj Liczbe</h1>
+<input id = "liczba" type="textfield" onfocus="this.value = ''"></input>
+<input type ="button" value = "Sprawdz" onclick = sprawdz()></input>
+<p id="wynik"></p>
+<h2>Wyswietl ciag liczb</h2>
+<br>
+<h1>Liczba pierwsza musi byc mniejsza od drugiej</h1>
+<br>
+Liczba pierwsza
+<input id ="pierwsza" type="text">
+Liczba druga
+<input id = "druga" type="text">
+<input type="button" value = "Pokaz" onclick = pokaz()></input>
+<h1 id = "ciag"></h1>
+<hr>
+<span onclick = "ustawSlajd(1)" style="cursor:pointer;">[1]</span>
+<span onclick = "ustawSlajd(2)" style="cursor:pointer;">[2]</span>
+<span onclick = "ustawSlajd(3)" style="cursor:pointer;">[3]</span>
+<span onclick = "ustawSlajd(4)" style="cursor:pointer;">[4]</span>
+<span onclick = "ustawSlajd(5)" style="cursor:pointer;">[5]</span>
+<h1>Pokaz slajdow</h1>
+  <div id = "slider"></div>
+
+</body>
+
+</html>

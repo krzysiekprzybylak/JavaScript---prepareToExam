@@ -1,0 +1,215 @@
+<!doctype HTML>
+<html>
+<head>
+<script>
+var samochody = ["bmw","audi","skoda","polonez","alfa romeo","saab"];
+var liczby = [1,5,66,77,87,100,-1,-77];
+function displayAllElements()  {
+  var i,x;
+  x="<ol>";
+  for(i=0;i<samochody.length;i++){
+      x += "<li>" + samochody[i] +"</li>";
+    }
+  x+="</ol>"
+  document.getElementById("display").innerHTML = x;
+  }
+function showRequestElement(){
+  var wartosc = document.getElementById("choose").value;
+  if(wartosc >= samochody.length){
+  alert("Number need to be less than 6");
+  }
+  else{
+    var element = samochody[wartosc];
+    document.getElementById("pokaz").innerHTML = element ;
+      }
+    }
+function seasonsCheck(){
+  var season = document.getElementById("season").value;
+  switch(season){
+    case '12':
+    case '1':
+    case '2':
+      document.getElementById("pora").innerHTML = "This is winter";
+      break;
+    case '3':
+    case '4':
+    case '5':
+      document.getElementById("pora").innerHTML = "This is spring";
+      break;
+    case '6':
+    case '7':
+    case '8':
+      document.getElementById("pora").innerHTML = "This is summer";
+      break;
+    case '9':
+    case '10':
+    case '11':
+      document.getElementById("pora").innerHTML = "This is autumn";
+      break;
+    default:
+    document.getElementById("pora").innerHTML = "You wright wrong value of the month there are only 12 months";
+    break;
+
+  }
+}
+var person = {firstName: "krzysiek", lastName: "Przybylak", age:37}
+for(var prop in person){
+  document.write(person[prop]+" ");
+}
+function compareString(){
+  var name = document.getElementById("name").value;
+  name==="krzysiek" ? document.getElementById("porownaj").innerHTML = "Congratulation you win kiss":document.getElementById("porownaj").innerHTML = "Wrong try again";
+}
+function concatArray(){
+  var twoArray =samochody.concat(liczby);
+  document.getElementById("result").innerHTML=twoArray;
+}
+function arrayToString(){
+var twoArray =samochody.concat(liczby);
+  var twoArrayInString = twoArray.join('****');
+  document.getElementById("result").innerHTML=twoArrayInString;
+}
+function reverseArray(){
+  var twoArray =samochody.concat(liczby);
+  var reversArray = twoArray.reverse();
+  document.getElementById("result").innerHTML=reversArray;
+}
+function sortArray(){
+var sortArray = samochody.sort();
+document.getElementById("result").innerHTML=sortArray;
+}
+function sliceElements(){
+  var sliceElements = samochody.slice(0,4);//first index for start second where to finish (excluded)
+  document.querySelector("#result").innerHTML=sliceElements;
+}
+function spliceElements(){
+  var spliceElements = samochody.splice(0,3,'lolo');
+    document.querySelector("#result").innerHTML = spliceElements.concat(samochody);
+}
+function popZukOnEnd(){
+  var popZukOnEnd = samochody.pop('Polski zuk');
+  document.querySelector("#result").innerHTML = samochody;
+}
+function pushZukOnEnd(){
+  var pushZukOnEnd = samochody.push("Polski zuk");
+  document.querySelector("#result").innerHTML = samochody;
+}
+function shiftFirstElement(){
+  var shiftFirstElement = samochody.shift("Fiat 126p");
+  document.querySelector("#result").innerText = samochody;
+}
+function unShiftFirstElement(){
+  var unShiftFirstElement = samochody.unshift("Fiat 126p");
+  document.querySelector("#result").innerText = samochody;
+}
+function arrayMethods(){
+    var option = document.getElementById("option").value;
+    switch(option){
+    case 'Concat':
+    concatArray();
+    break;
+    case 'Join':
+    case 'join':
+    arrayToString();
+    break;
+    case 'Reverse':
+    reverseArray();
+    break;
+    case 'Sort':
+    sortArray();
+    break;
+    case 'Slice':
+    sliceElements();
+    break;
+    case 'Splice':
+    spliceElements();
+    break;
+    case 'Push':
+    pushZukOnEnd();
+    break;
+    case 'Pop':
+    popZukOnEnd();
+    break;
+    case 'Shift':
+    shiftFirstElement();
+    break;
+    case 'Unshift':
+    unShiftFirstElement();
+    break;
+    default:
+    document.getElementById("result").innerHTML = "You can use only words from list";
+    break;
+    }
+  }
+function everyMethod(){
+  var evenNumbers = [0,2,4,6,8,10];
+  var oddNumbers = [1,3,5,7,9];
+  var mixNumbers = [0,1,2,3,4,5,6,7,8,9];
+
+  var allEven = evenNumbers.every(evenNumberCheck,evenNumbers);
+
+  function evenNumberCheck(value,index,array){
+    return (value%2)==0;
+  }
+  if(allEven){
+    document.getElementsByTagName("div")[0].style.backgroundColor = "red";
+  }
+  else{
+    document.getElementsByTagName("div")[0].style.backgroundColor = "green";
+  }
+  }
+function someMethod(){
+    var evenNumbers = [0,2,4,6,8,10];
+    var oddNumbers = [1,3,5,7,9];
+    var mixNumbers = [0,1,2,3,4,5,6,7,8,9];
+
+    var allEven = oddNumbers.every(evenNumberCheck,evenNumbers);
+
+    function evenNumberCheck(value,index,array){
+      return (value%2)==0;
+    }
+    if(allEven){
+      document.getElementsByTagName("div")[0].style.backgroundColor = "red";
+    }
+    else{
+      document.getElementsByTagName("div")[0].style.backgroundColor = "green";
+    }
+    }
+
+var cd = document.getElementById("test");
+cd.addEventListener("mouseover",colorOnRed,false);
+function colorOnRed(){
+alert("ok");
+
+//  document.querySelector("#test").style.color= red;
+}
+</script>
+</head>
+
+<body onload = someMethod()>
+
+<p id="test">testing element</p>
+<div>
+<input type = "button" onclick=displayAllElements() value="show array"></input>
+<p id = "display"></p>
+<hr>
+<input type="button" value ="show element" onclick = showRequestElement()></input>
+<input type="text" id = "choose">
+<p id="pokaz"></p>
+<hr>
+<input type = "text" id = "season">
+<input type="button" value = "check season" onclick = seasonsCheck()>
+<p id = "pora" ></p>
+<hr>
+<input type = "text" id = "name">
+<input type="button" value = "guess my name" onclick = compareString()>
+<p id = "porownaj"></p>
+<hr>
+<p><strong>Write 'Sort' or 'Reverse' or 'Join' or 'Concat' or 'Slice' or 'Splice' or 'Push' or 'Pop' or 'Shift' or 'Unshift' in field </strong></p>
+<input type = "text" id = "option">
+<input type="button" value = "Check result" onclick = arrayMethods()>
+<p id ="result"></p>
+</div>
+</body>
+
+</html>

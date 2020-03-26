@@ -1,0 +1,381 @@
+<!DOCTYPE Html>
+<html>
+<head>
+  <meta charset="utf-8"><!--This meta data teling browser -->
+  <title>Preparing To Exam</title>
+  <script>
+/*  //function displayElement(){
+   var element = document.getElementById("first");
+   alert(element.innerHTML);
+ }
+ //function getListElements(){
+   var paragraf = document.getElementsByTagName("li");
+   alert(paragraf.length);
+   for(i=0;i<paragraf.length;i++){
+   alert("Paragraf No "+ (i+1) + " "+ paragraf[i].innerHTML);}
+ }
+ //function howManyPages(){
+ var x = document.getElementById("bar").value;
+ //var x =document.getElementsByTagName("MARK").value;
+   document.getElementById("npage").innerHTML = x;
+ }
+ //function getClassOdd(){
+   var oddNumber = document.getElementsByClassName("oddNumber");
+   for(i=0;i<oddNumber.length;i++){
+     alert(oddNumber[i].innerHTML); }}
+
+function showPage(){//this function and function below do exacly the same
+var x = document.querySelector("#bar").value;
+document.getElementById("npage").innerHTML = x;
+
+
+function showPage(){
+var x = document.querySelectorAll("progress");
+document.getElementById("npage").innerHTML = x[0].value;}
+
+function removeChildElement(){//not working like expected
+  var x = document.getElementById("innerDiv");
+  alert(x.innerHTML); //just checking what value has x at the moment
+  document.removeChild(x);
+   }
+
+   function addElement(){//add element as a last in article
+var article = document.getElementById("first");
+var element = document.createElement("article");
+element.innerText = "New element";
+article.appendChild(element);}
+
+*/function addElement(){//take element first add new child element which is create and display on the end of container
+var article = document.getElementById("first").appendChild(document.createElement("element"));
+article.innerText="new Element";
+
+}
+function showPage(){
+var x = document.querySelectorAll("progress");
+document.getElementById("npage").innerHTML = x[0].value;}
+
+function addListElement(){
+  var x = document.getElementById("unorderList").appendChild(document.createElement("li"));
+  x.innerHTML="Seven";
+}
+function addNewPhoto(src,alt){//adding image to page
+var x = document.createElement("img");
+  x.src=src;
+  x.alt=alt;
+document.body.appendChild(x);
+}
+function insertAfterFirstParagraf(){
+  var first = document.getElementById("first");
+  var second = document.getElementById("second.p");
+  var element = first.insertBefore(document.createElement("p"),second);
+  element.innerHTML = "This is new added paragraf should be secound now";
+}
+function checkHasChildNodes(){
+var three = document.getElementById("three");
+  if(three.hasChildNodes){
+    three.innerHTML = "true";
+  }
+  else{
+    three.innerHTML = "false";
+  }
+}
+function displayChildNodes(){
+  var first = document.getElementById("first");
+  alert(first.childNodes[5]);
+}
+function removeFirstParagraf(){
+var x = document.querySelector("#first");
+  //var x = document.getElementById("first");
+  //var y = x.removeChild(document.getElementById("first.p"));
+  var y = x.removeChild(document.querySelectorAll("p")[0]);
+}
+function convertParagrafsToAnchor(){//not working
+  var first = document.getElementById("first");
+  var newDiv = document.createElement("div");
+  for(var i = 0; i<first.childNodes.length;i++){
+    var anchor = newDiv.appendChild(document.createElement("a"));
+    anchor.setAttribute("href","http://www.google.com");
+    anchor.text = first.childNodes[i].textContent;
+    newDiv.appendChild(document.createElement("br"));
+  }
+  first.replaceNode(newDiv);
+}
+function removeDiv(){
+var x = document.getElementById("second");
+//alert(x.innerHTML);
+//  var x = document.querySelector("#first");
+  x.removeNode(true);
+}
+function drawing() {
+  var x = document.getElementById("canvasSurface");
+  var ctxt = x.getContext("2d");
+  ctxt.beginPath();//new drawing path
+  ctxt.moveTo(10,10);//start point
+  ctxt.lineTo(290,200);//end point
+  ctxt.lineTo(20,66);//next end point
+  ctxt.lineWidth = 10;//width of line
+  ctxt.strokeStyle = "red";// color of line
+  ctxt.rect(0,0,150,75);//draw rectangle (x(starting point),y(starting point),width, hight)
+  ctxt.fillStyle = "blue";
+  ctxt.fill();
+//  ctxt.strokeText("TEXT DRAW IN CANVAS",10,250)
+  ctxt.stroke();//draw
+}
+function position(){
+var x = document.getElementById("pinokio");
+var y = document.getElementById("name");
+  if(x.style.display=="none"){
+    x.style.display = "inline";
+    y.value = "Hide image";
+  }
+    else {
+      x.style.display = "none";
+    y.value = "Show image";
+    }
+
+  }
+  function geolocaction(){//after user permision display coordinats of current location
+    var geoLocator = window.navigator.geolocation;
+    var posOption = {enableHighAccuracy: true, timeout: 45000};
+    geoLocator.getCurrentPosition(successPosition, errorPosition, posOption);
+      }
+function successPosition(pos){
+  var sp = document.createElement("p");
+  sp.innerHTML = "Latitude: "+pos.coords.latitude + " Longitude: "+ pos.coords.longitude;
+  document.getElementById("geoResults").appendChild(sp);
+
+}
+function errorPosition(err){
+  var sp = document.createElement("p");
+  sp.innerHTML = "error: "+err.message +" code: " + err.code;
+  document.getElementById("geoResults").appendChild(sp);
+}
+function showInput(){
+  var x = document.getElementById("firstValue").value;
+document.getElementById("pp").innerHTML=Math.sqrt(parseInt(x));
+}
+
+function oddNum(){
+  var oddnum = [1,3,5,7];
+var i,x=0;
+  for(i=0;i<oddnum.length;i++){
+  x += oddnum[i];
+
+  }
+  document.getElementById("odd").innerHTML = x;
+}
+
+function carList(){
+  var car,x;
+  car = ["Volvo","BMW","Audi","VW"];
+
+  x="<ol>";
+  car.forEach(myfunction);
+  x +="<ol>";
+  document.getElementById("cars").innerHTML=x;
+  function myfunction(value){
+    x+= "<li>" + value + "</li>";
+  }}
+
+function checkYear(){
+var x = parseInt(document.getElementById("year").value);
+if(2020-x<=18){
+  document.getElementById("answer").innerHTML= document.getElementById("answer").innerHTML + (2020-x) +" years";
+addNewPhoto('./image/pinokio.jpg','pinokio photo should be here');
+}
+else {
+  document.getElementById("answer").innerHTML= "koko";
+}
+}
+
+ function showIndexOfK(){
+  var x = document.getElementById("stringTest").innerHTML;
+document.getElementById("pierwsza").innerHTML = x.indexOf("K");
+ }
+
+
+
+
+
+
+</script>
+</head>
+<body onload ="geolocaction(),addElement()"/>
+  <!--"removeChildElement()" ,"showPage()", getClassOdd() , getListElements(), howManyPages() , displayElement()-->
+<p id ="stringTest">Krol karol kupil krolowej karolinie korale koloru koralowego</p>
+<input onclick = showIndexOfK() type="button" value = "Show Index of K"></input>
+<p id="pierwsza"></p>
+<p id="druga"></p>
+<p id="trzecia"></p>
+<p id="czwarta"></p>
+Year of born<br>
+<input type="text" id = "year">
+<input type = "button" value = "Age Validation" onclick = checkYear()></input>
+<p id="answer">Your age is </p>
+<hr>
+<input type="button" value="show car list" onclick = carList()></input>
+<p id="cars"></p>
+<hr>
+<input type="text" id ="firstValue" >
+<input type="button" value="show input" onclick = showInput()></input>
+<p id="pp"></p>
+<hr>
+<div id="geoResults">
+<p>Current location: </p>
+<hr>
+<input type="button" value="array" onclick="oddNum()" ></input>
+<p id="odd"></p>
+</div>
+
+<div id="image">
+<img id = "pinokio" src = "image/pinokio.jpg"/>
+,<!--<img id ="motor" src = "image/motor.jpg"/>-->
+
+<input onclick = "position()" type="button" value="hide images" id="name"></input>
+<input onclick
+</div>
+
+
+<video src = "movie.mp4" controls poster="./image/pinokio.jpg"  height="150" width="200"></video>
+<canvas id ="canvasSurface" style = "border:solid" width = "300" height = "400">Your browser do not support HTML5</canvas>
+<button onclick=drawing()>rysuj</button>
+<div id = "wraper">
+<button onclick = displayChildNodes()>display child nodes</button>
+
+<button onclick = "insertAfterFirstParagraf()">insert After First Paragraf</button>
+    <hr>
+
+    <button onclick = convertParagrafsToAnchor()>Convert paragrafs to anchor</button>
+    <button onclick = removeFirstParagraf()>Remove first paragraf</button>
+
+    <button onclick = removeDiv()>remove Div</button>
+<div id = "first">
+    <p id = "first.p"> First Paragraf</p>
+    <p id = "second.p"> SecondParagraf</p>
+    <p id = "third.p"> Third Paragraf</p>
+    <p id = "fourth.p"> Fourth Paragraf</p>
+</div>
+  <div id ="second">
+
+      <p id = "first.p1"> First Paragraf</p>
+      <p id = "second.p1"> SecondParagraf</p>
+      <p id = "third.p1"> Third Paragraf</p>
+      <p id = "fourd.p1"> Fourth Paragraf</p>
+
+  </div>
+  <button onclick = checkHasChildNodes()>Check div three has child</button>
+  <div id = "three"> div three</div>
+</div>
+
+<header>
+<hgroup><!--this element grouping heders-->
+<h1 >Progress in preparing to Exam </h1>
+<h2>Number of Pages <mark>determinate progress</mark></h2>
+</hgroup>
+<span>0</span><!--  start value progress bar-->
+<progress id = "bar" value ="60" max = "311"></progress><!--progress bar value - current value max - value of full bar-->
+<span>312</span><!-- end value progress bar-->
+<p>Current page is <mark id="npage"></mark></p>
+
+</header>
+<hr>
+<div id="innerDiv">
+  <p>Jeden</p>
+  <p>Jeden</p>
+  <p>Jeden</p>
+</div>
+<hr>
+<article id="firstw">
+
+    <h3 id="test">If we don't know how long will progress take <mark>indeterminate progress</mark></h3>
+    <progress max="10"></progress>
+
+<button onclick = addListElement()>Add List Element</button>
+<nav>
+  <ul id = "unorderList">
+    <li class = "oddNumber">One</li>
+    <li>Two</li>
+    <li class = "oddNumber">Three</li>
+    <li>Four</li>
+    <li class = "oddNumber">Five</li>
+  </ul>
+</nav>
+</article>
+<hr>
+<article>
+  <section>
+    <hgroup>
+      <h3>Text in section element</h3>
+    </hgroup>
+    <aside>Some text a side of Main content</aside>
+  </section>
+</article>
+
+<article>
+<header>
+  <hgroup>
+    <h2>Text in article navigation to web browsers</h2>
+  </hgroup>
+</header>
+
+
+<section>
+<nav>
+<a href = "https://www.google.com" target ="_blank">Google Browser</a><!--target="_blank" open link in new tab-->
+<a href = "https://www.yahoo.com" trget = "_blank">Yahoo Browser</a>
+<a href ="https://www.duck.com">Duck browser</a>
+</nav>
+</section>
+<section>
+<table><!-- table styling structure!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<tr>
+  <td colspan="3"id="Header">1</td>
+</tr>
+<tr>
+  <td rowspan="3" id="LeftBar">2</td>
+  <td rowspan="3" id="MainContent">3</td>
+  <td id = "RightSideTop">4</td>
+</tr>
+<tr>
+  <td id = "RightSideMiddle">5</td>
+</tr>
+<tr>
+  <td id="RightSideBottom">6</td>
+</tr>
+<tr>
+  <td colspan="3" id = "Footer">7</td>
+</tr>
+</table>
+
+
+</section>
+<section id ="zdjecia">
+  <header>
+  <hgroup>
+    <h2>Second section with photo from Rome</h2>
+  </hgroup>
+  <button onclick = "addNewPhoto('./image/pinokio.jpg','pinokio photo should be here');">Insert picture</button>
+
+</header>
+<figure><!--New element in html5-->
+  <img id = "photo" src ="image/pinokio.jpg"/>
+  <figcaption> Fig.1: Pinokio</figcaption><!-- New element in html5-->
+</figure>
+<figure>
+  <img src ="image/motor.jpg"/>
+  <figcaption> Fig.2: Wooden motor</figcaption>
+</figure>
+<figure id = "girlInFrame">
+  <img src = "image/poza.jpg"/>
+  <figcaption>Fig.3: Girl in frame</figcaption>
+</figure>
+
+</section>
+</article>
+
+<footer>This is My testing Page to prepare me for Exam</footer>
+
+
+</body>
+
+</html>
